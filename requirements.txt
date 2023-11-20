@@ -1,0 +1,8 @@
+asyncio
+base64
+json
+pyaudio
+websockets
+time
+pynput
+openai
