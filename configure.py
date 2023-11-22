@@ -16,4 +16,4 @@ user_name = ""
 interviewer_name = ""
 
 # System prompt providing details about the conversation context
-prompt = ""
+system_prompt = ""
