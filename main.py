@@ -6,7 +6,7 @@ import websockets
 import time
 from pynput import keyboard
 from openai import OpenAI
-from configure import auth_key, OPENAI_API_KEY, prompt, ai_model, user_name, interviewer_name
+from configure import auth_key, OPENAI_API_KEY, system_prompt, ai_model, user_name, interviewer_name
 
 class RealtimeTranscriber:
     """
@@ -21,7 +21,7 @@ class RealtimeTranscriber:
     RATE = 16000
     WEBSOCKET_URL = "wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000"
 
-    def __init__(self, ai_model: str = "gpt-4-1106-preview"):
+    def __init__(self):
         """
         Initializes the transcriber with the specified AI model and sets up the audio stream.
         
@@ -34,7 +34,7 @@ class RealtimeTranscriber:
         self.user_name = user_name  # The name of the user speaking
         self.interviewer_name = interviewer_name  # The name of the interviewer
         self.assistant_message = ""  # Stores the assistant's message
-        self.messages = [{"role": "system", "content": prompt}]  # Initializes message history with the system prompt
+        self.messages = [{"role": "system", "content": system_prompt}]  # Initializes message history with the system prompt
         
         # Append a user note to the message history to guide GPTs response style
         self.append_message("user", "Note: Remember to always be concise, brief, straight-to-the-point...")
@@ -188,5 +188,5 @@ class RealtimeTranscriber:
 
 # Main execution
 if __name__ == "__main__":
-    transcriber = RealtimeTranscriber(model)  # Instantiate the transcriber
+    transcriber = RealtimeTranscriber()  # Instantiate the transcriber
     transcriber.run()  # Run the transcriber
